@@ -66,7 +66,6 @@ call plug#end()
 " Plugin Customization Begins Here
 " --------------------------------
 
-
 " vim-surround
 let g:surround_45 = "{% \r %}"  " replace yss-
 let g:surround_95 = "{{ \r }}"  " replace yss_
@@ -86,6 +85,8 @@ nmap <CR> o<Esc>
 
 " remove search highlight (not needed in Vim9)
 " nnoremap <C-L> :nohl<CR><C-L>
+
+
 
 " ----------------------
 " statusline setup------
