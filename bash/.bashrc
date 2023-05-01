@@ -7,7 +7,7 @@ case $- in
 esac;
 
 # Setting PATH
-export PATHAPPEND=":~/bin"
+export PATHAPPEND=":$HOME/bin"
 export PATHPREP="/opt/local/bin:/opt/local/sbin:"
 export PATH="$PATHPREP$PATH$PATHAPPEND"
 
@@ -43,7 +43,7 @@ alias pip='pip3'
 alias c='clear'
 alias ls='ls -F'
 alias la='ls -la'
-alias portsrch='port search --name --line --glob'
+alias portsrch='port search --name --glob'
 
 # Hitory
 HISTCONTROL='ignoredups'

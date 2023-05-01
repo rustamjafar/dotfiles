@@ -5,6 +5,9 @@ set listchars=space:*,extends:>,precedes:<,tab:\|>,eol:$
 " set keymap=russian-jcukenwin
 " set keymap=arabic_utf-8
 
+" make vim to recognize space normally
+set backspace=indent,eol,start
+
 set iminsert=0
 set imsearch=0
 set autochdir " changes default dir to currentfile dir
@@ -77,11 +80,20 @@ let g:NERDTreeWinSize=23
 
 " --------------------------------
 " remapping-----------------------
+" map: normal, visual, select and operator pendingm modes
+" map!: insert, command-line
+" :help key-notation
 " --------------------------------
 
 " inserting one line below/above the current
 nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
+
+" rtl / ltr
+map <S-l> :set rl<CR>
+map! <S-l> :set rl<CR>a
+map <S-h> :set norl<CR>
+map! <S-h> :set norl<CR>a
 
 " remove search highlight (not needed in Vim9)
 " nnoremap <C-L> :nohl<CR><C-L>
@@ -93,4 +105,4 @@ nmap <CR> o<Esc>
 " ----------------------
 
 set ruler
-set ruf=%30(%=%#LineNr#%.50F\ [%{strlen(&ft)?&ft:'none'}]\ %l:%c\ %p%%%)
+set ruf=%30(%=%#Normal#%.50F\ [%{strlen(&ft)?&ft:'none'}]\ %l:%c\ %p%%%)
