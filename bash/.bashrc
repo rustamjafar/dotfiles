@@ -12,6 +12,8 @@ esac;
 # set color formatters
 start_color='e[38;5;'
 end_format='e[0m'
+
+RED=$(tput setaf 124)
 ORANGE=$(tput setaf 202)
 NORMAL=$(tput sgr0)
 
@@ -26,13 +28,23 @@ export CDPATH=$HOME/rsmn/:$HOME/
 # Default editor
 EDITOR="$(which vim)"
 
+# checking if pwd is git repo
+# to be refactored
+# add check on pushing
 git_branch() {
     gbranch=$(git branch --show-current 2> /dev/null)
-    if [ -n "$gbranch" ]; then
-        echo -e "\e[38;5;124m b:$gbranch\e[0m"
+
+    if [ -n "$gbranch" ] && [ -n "$(git status --porcelain)" ]; then
+            echo -e "\e[38;5;124m b:$gbranch\e[0m"
+    fi
+
+    if [ -n "$gbranch" ] && [ -z "$(git status --porcelain)" ]; then
+            echo -e "\e[38;5;34m b:$gbranch\e[0m"
     fi
 }
 
+# color hostname for easiness in multi-os env
+# for now includes only ubuntu
 if grep -iq 'name="ubuntu"' /etc/os-release 2>/dev/null; then
     HOSTNAME="${ORANGE}${HOSTNAME}${NORMAL}"
 fi
@@ -53,5 +65,5 @@ alias sshd='sudo /usr/sbin/sshd -f ~/myserver/config'
 HISTCONTROL='ignoredups'
 HISTTIMEFORMAT='%H%M%S%d%m%Y  '
 
-# lynx
+# run lynx user config file
 LYNX_CFG=~/lynx.cfg
