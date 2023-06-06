@@ -1,59 +1,98 @@
-set shell=/usr/local/bin/bash
-set encoding=utf-8
+set shell=/usr/bin/bash
+set encoding=utf-8      " The encoding displayed on screen
+set fileencoding=utf-8  " The encoding written to file.
 
-" language specific
-set arabicshape
-set listchars=space:*,extends:>,precedes:<,tab:\|>,eol:$
+" languages
+"set arabicshape
 "set keymap=russian-jcukenwin
 "set keymap=arabic_utf-8
 
-" set mapleader
-let mapleader = ","
-
-" syntax highlight
-syntax on
-
-" set background dark/light
-set background=dark
-
-" make vim to recognize space normally
+" keyboard
+set listchars=space:*,extends:>,precedes:<,tab:\|>,eol:$
 set backspace=indent,eol,start
 
 " ???????????????
 set iminsert=0
 set imsearch=0
 
+augroup vimrc_autocmd
+    au!
+    " bg dark
+augroup END
+
+" set mapleader
+let mapleader = ","
+
+" syntax highlight
+"runtime plugged/fogbell.vim/colors
+colorscheme fogbell
+
+" set highlighting groups
+hi clear Conceal
+hi Normal ctermfg=white ctermbg=black
+hi Statement ctermfg=white
+hi Todo ctermfg=none
+hi Comment ctermfg=247
+hi PreProc ctermfg=white
+hi Identifier ctermfg=white
+hi String ctermfg=white
+hi Operator ctermfg=white
+hi Number ctermfg=white
+hi Special ctermfg=white
+hi Ignore ctermfg=white
+
+" set colors on vim start
+au VimEnter * hi clear Conceal
+au VimEnter * hi Normal ctermfg=white ctermbg=black
+au VimEnter * hi Statement ctermfg=white
+au VimEnter * hi Todo ctermfg=none
+au VimEnter * hi Comment ctermfg=247
+au VimEnter * hi PreProc ctermfg=white
+au VimEnter * hi Identifier ctermfg=white
+au VimEnter * hi String ctermfg=white
+au VimEnter * hi Operator ctermfg=white
+au VimEnter * hi Number ctermfg=white
+au VimEnter * hi Special ctermfg=white
+au VimEnter * hi Ignore ctermfg=white
+
+
+" execute 'hi' synIDattr(synID(line("."), col("."), 1), "name")
+
+" concealing
+set conceallevel=2
+
 " changes default dir to currentfile dir
 set autochdir
 
-" Show matching brackets
-set showmatch
+" show matching brackets
+set noshowmatch                         " disables short snapback
+let g:loaded_matchparen = 0             " disables highlighting itself
 
-set wrap " Wrap text that goes beyond screen length
-set colorcolumn=80 " colors column
-set textwidth=80 " line break at 80col
+set wrap                                " wrap text that goes beyond screen
+set colorcolumn=80                      " colors column
 hi ColorColumn ctermbg=darkgrey
+set textwidth=80                        " line break at 80col
 hi ExtraWhitespace ctermbg=darkgrey
 match ExtraWhitespace /\s\+$/
 
 " disabled autofolding
 set nofoldenable
 
-" Hide line numbers
+" hide line numbers
 set nonumber
 
-" Stop system vim sounds
+" stop system vim sounds
 set noerrorbells
 
-" no scrollbars
+" no scrollbars in macvim
 "set guioptions=
 
 " search-centricity
 set ttyfast
-set nohlsearch " highlight search
-set ignorecase " ignorecase
-set incsearch " highlight while typing
-set scrolloff=5 " 5 lines before/after cursor preserved
+set nohlsearch    " highlight search
+set ignorecase    " ignorecase
+set incsearch     " highlight while typing
+set scrolloff=5   " 5 lines before/after cursor preserved
 
 " remove search highlight (not needed in Vim9)
 "nnoremap <C-L> :nohl<CR><C-L>
@@ -61,38 +100,41 @@ set scrolloff=5 " 5 lines before/after cursor preserved
 " show commands written
 "set showcmd
 
-" use systems clipboard
-set clipboard=unnamed
+" use systems clipboard (macvim)
+"set clipboard=unnamed
 
-" set fo+=
+" ?????????????? set fo+=
 set formatoptions+=t
 
+" working w/ tab
 set softtabstop=4 " amount of whitespaces inserted on each <tab> press
-set tabstop=4 " show existing tab with 4 spaces width
-set shiftwidth=4 " when indenting with '>', use 4 spaces width
-set expandtab " converts \t into <tabstop> amount of spaces
+set tabstop=4     " show existing tab with 4 spaces width
+set shiftwidth=4  " when indenting with '>', use 4 spaces width
+set expandtab     " converts \t into <tabstop> amount of spaces
 
 " no backup files
 set nobackup
 set noswapfile
 set nowritebackup
 
-" source on save
-"autocmd BufWritePost vimrc source %
-
 " turn on the detection of ft, plugins and indents
-filetype plugin indent on
+filetype on             " enable filetype detection
+filetype plugin on      " load file-specific plugins
+filetype indent on      " load file-specific indentation
 
 " Vim-Plugin
+" autoload vim-plugin if not found
+"let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+"if empty(glob(data_dir . '/autoload/plug.vim'))
+"  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+"  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"endif
+
 call plug#begin('~/.vim/plugged')
 
-   Plug 'prettier/vim-prettier'
    Plug 'vim-pandoc/vim-pandoc'
-   Plug 'vim-pandoc/vim-pandoc-syntax'
-   "Plug 'rwxrob/vim-pandoc-syntax-simple'
-   Plug 'rrethy/vim-illuminate'  " highlight words under cursor
-   Plug 'mattn/emmet-vim' " html&css
-   "Plug 'loremipsum' "don't work w/ Vim-Plugin
+   Plug 'lervag/vimtex'
+   "Plug 'jaredgorski/fogbell.vim'
 
 call plug#end()
 
@@ -101,24 +143,24 @@ call plug#end()
 " --------------------------------
 
 " --------------------------------
-" vim-surround
-" --------------------------------
-
-" https://ascii.cl/  : ascii character codes
-" https://github.com/tpope/vim-surround/blob/master/doc/surround.txt
-
-" --------------------------------
 " vim-pandoc
 " --------------------------------
 
 " enable=1 / disable=0 spelling
 let g:pandoc#spell#enabled = 0
 
-" Width of the window's foldcolumn. disable=0. (annoying 1st column)
+" annoying 1st f oldcolumn width. disable=0.
 let g:pandoc#folding#fdc = 0
 
 " turn off conceal of vim-pandoc-syntax
 let g:pandoc#syntax#conceal#use = 0
+
+" --------------------------------
+" vimtex
+" --------------------------------
+
+" disable matching parenth (def 1)
+let g:vimtex_matchparen_enabled = 0
 
 " --------------------------------
 " remapping
@@ -127,15 +169,27 @@ let g:pandoc#syntax#conceal#use = 0
 " :help key-notation
 " --------------------------------
 
+" texsnip
+noremap <leader>tex :.!texsnip<CR>
+
+" 'Y' as 'D'
+map <S-Y> y$
+
+" reload vimrc
+nnoremap <C-W>r :so $MYVIMRC<CR>
+
 " inserting one line below/above the current
-nmap <S-Return> O<Esc>
-nmap <CR> o<Esc>
+"nnoremap <S-k> O<Esc>
+nnoremap <CR> o<Esc>
 
 " rtl / ltr
-" map <S-l> :set rl<CR>
-" map! <S-l> :set rl<CR>a
-" map <S-h> :set norl<CR>
-" map! <S-h> :set norl<CR>a
+"nnoremap <leader>h :set norl<CR>
+"inoremap <leader>h :set norl<CR>a
+"nnoremap <leader>l :set rl<CR>
+"inoremap <leader>l :set rl<CR>a
+
+" pathname completion
+inoremap <leader><C-I> <C-X><C-F>
 
 " ----------------------
 " statusline setup

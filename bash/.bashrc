@@ -18,8 +18,8 @@ ORANGE=$(tput setaf 202)
 NORMAL=$(tput sgr0)
 
 # Setting PATH
-export PATHAPPEND=:$HOME/m7tkr/bash/bin
 export PATHPREP=
+export PATHAPPEND=:$HOME/shared/bash/bin
 export PATH=$PATHPREP$PATH$PATHAPPEND
 
 # Setting CDPATH
@@ -50,7 +50,7 @@ if grep -iq 'name="ubuntu"' /etc/os-release 2>/dev/null; then
 fi
 
 # prompt customization
-PS1='╔ $SHLVL:$USER@$HOSTNAME in (${PWD//$HOME/\~}$(git_branch)) \n╚ '
+PS1='╔ $SHLVL:$USER@$HOSTNAME in (${PWD//$HOME/\~}$(git_branch))\n╚ '
 
 # Setting aliases
 alias python='python3'
@@ -60,6 +60,8 @@ alias ls='ls -F'
 alias la='ls -la'
 alias portsrch='port search --name --glob'
 alias sshd='sudo /usr/sbin/sshd -f ~/myserver/config'
+alias pdflatex='pdflatex -file-line-error -halt-on-error -synctex=1'
+alias tree='tree -L'
 
 # Hitory
 HISTCONTROL='ignoredups'
