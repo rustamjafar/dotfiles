@@ -24,7 +24,8 @@ augroup END
 let mapleader = ","
 
 " syntax highlight
-"runtime plugged/fogbell.vim/colors
+" colorscheme is from fogbell
+"runtime colors/
 colorscheme fogbell
 
 " set highlighting groups
@@ -32,7 +33,7 @@ hi clear Conceal
 hi Normal ctermfg=white ctermbg=black
 hi Statement ctermfg=white
 hi Todo ctermfg=none
-hi Comment ctermfg=247
+hi Comment ctermfg=249
 hi PreProc ctermfg=white
 hi Identifier ctermfg=white
 hi String ctermfg=white
@@ -40,13 +41,16 @@ hi Operator ctermfg=white
 hi Number ctermfg=white
 hi Special ctermfg=white
 hi Ignore ctermfg=white
+hi Function ctermfg=white
+hi Boolean ctermfg=white
+hi Conditional ctermfg=white
 
 " set colors on vim start
 au VimEnter * hi clear Conceal
 au VimEnter * hi Normal ctermfg=white ctermbg=black
 au VimEnter * hi Statement ctermfg=white
 au VimEnter * hi Todo ctermfg=none
-au VimEnter * hi Comment ctermfg=247
+au VimEnter * hi Comment ctermfg=249
 au VimEnter * hi PreProc ctermfg=white
 au VimEnter * hi Identifier ctermfg=white
 au VimEnter * hi String ctermfg=white
@@ -54,6 +58,7 @@ au VimEnter * hi Operator ctermfg=white
 au VimEnter * hi Number ctermfg=white
 au VimEnter * hi Special ctermfg=white
 au VimEnter * hi Ignore ctermfg=white
+au VimEnter * hi Function ctermfg=white
 
 
 " execute 'hi' synIDattr(synID(line("."), col("."), 1), "name")
@@ -134,7 +139,6 @@ call plug#begin('~/.vim/plugged')
 
    Plug 'vim-pandoc/vim-pandoc'
    Plug 'lervag/vimtex'
-   "Plug 'jaredgorski/fogbell.vim'
 
 call plug#end()
 
@@ -161,6 +165,23 @@ let g:pandoc#syntax#conceal#use = 0
 
 " disable matching parenth (def 1)
 let g:vimtex_matchparen_enabled = 0
+
+let g:vimtex_compiler_latexmk = {
+        \ 'aux_dir' : '',
+        \ 'out_dir' : '',
+        \ 'callback' : 1,
+        \ 'continuous' : 1,
+        \ 'executable' : 'latexmk',
+        \ 'hooks' : [],
+        \ 'options' : [
+        \   '-verbose',
+        \   '-file-line-error',
+        \   '-synctex=1',
+        \   '-interaction=nonstopmode',
+        \ ],
+        \}
+
+let g:vimtex_quickfix_open_on_warning = 1
 
 " --------------------------------
 " remapping

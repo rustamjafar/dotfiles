@@ -62,6 +62,7 @@ alias portsrch='port search --name --glob'
 alias sshd='sudo /usr/sbin/sshd -f ~/myserver/config'
 alias pdflatex='pdflatex -file-line-error -halt-on-error -synctex=1'
 alias tree='tree -L'
+alias lynx='lynx -cfg $HOME/lynx.cfg -lss $HOME/mmono.lss'
 
 # Hitory
 HISTCONTROL='ignoredups'
