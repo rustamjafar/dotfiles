@@ -58,15 +58,16 @@ alias pip='pip3'
 alias c='clear'
 alias ls='ls -F'
 alias la='ls -la'
+alias ll='ls -l'
 alias portsrch='port search --name --glob'
 alias sshd='sudo /usr/sbin/sshd -f ~/myserver/config'
 alias pdflatex='pdflatex -file-line-error -halt-on-error -synctex=1'
 alias tree='tree -L'
-alias lynx='lynx -cfg $HOME/lynx.cfg -lss $HOME/mmono.lss'
+# alias lynx='lynx-cfg $HOME/lynx.cfg -lss $HOME/mmono.lss'
 
 # Hitory
 HISTCONTROL='ignoredups'
 HISTTIMEFORMAT='%H%M%S%d%m%Y  '
 
 # run lynx user config file
-LYNX_CFG=~/lynx.cfg
+#LYNX_CFG=~/lynx.cfg
