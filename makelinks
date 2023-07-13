@@ -1,9 +1,47 @@
-#!/usr/local/env bash
+#!/usr/bin/env bash
 
+# author: m7tkr
+# last edited: 20230713145333
+# purpose: create rc files symlinks
+# usage: ---
+
+# sets script's directory
 SOURCEPATH=$( dirname ${BASH_SOURCE[0]} )
 
+# set -mindepth 1 to exclude parent dir
+#find $SOURCEPATH -maxdepth 1 -mindepth 1 -type d -not -name '.*'
+
+function symLink() {
+    # check if symbolic link folder exists
+    if [ -d $(eval echo $symFolder) ]; then
+        eval ln -sf $hardLink $symLink
+    else
+        # if not then 1st create it
+        mkdir -p $symFolder
+        # then place symbolic link inside
+        eval ln -sf $hardLink $symLink
+    fi
+}
+
+function noSymLink() {
+    echo no symlink for $1 is created
+}
+
 while read; do
-    hardLink="$HOME/$SOURCEPATH/${REPLY%%:*}/${REPLY##*/}"
+    hardFolder=${REPLY%%:*}
+    hardFile=${REPLY##*/}
+
+    hardLink="$HOME/$SOURCEPATH/${hardFolder}/${hardFile}"
     symLink="${REPLY##*:}"
-    eval ln -sf $hardLink $symLink
-done < $SOURCEPATH/locations
+
+    # setting symFolder
+    symFolder="${REPLY##*:}"
+    symFolder="${symFolder%/*}"
+
+
+    if [ -n "$(grep '^#' <<< $REPLY)" ]; then
+        noSymLink $REPLY
+    else
+        symLink
+    fi
+done < $SOURCEPATH/locations.txt

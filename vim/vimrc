@@ -60,7 +60,6 @@ au VimEnter * hi Special ctermfg=white
 au VimEnter * hi Ignore ctermfg=white
 au VimEnter * hi Function ctermfg=white
 
-
 " execute 'hi' synIDattr(synID(line("."), col("."), 1), "name")
 
 " concealing
@@ -76,7 +75,6 @@ let g:loaded_matchparen = 0             " disables highlighting itself
 set wrap                                " wrap text that goes beyond screen
 set colorcolumn=80                      " colors column
 hi ColorColumn ctermbg=darkgrey
-set textwidth=80                        " line break at 80col
 hi ExtraWhitespace ctermbg=darkgrey
 match ExtraWhitespace /\s\+$/
 
@@ -109,7 +107,7 @@ set scrolloff=5   " 5 lines before/after cursor preserved
 "set clipboard=unnamed
 
 " ?????????????? set fo+=
-set formatoptions+=t
+" set formatoptions+=t
 
 " working w/ tab
 set softtabstop=4 " amount of whitespaces inserted on each <tab> press
