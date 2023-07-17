@@ -1,6 +1,8 @@
 bash:$HOME/.bashrc
 bash:$HOME/.inputrc
 vim:$HOME/.vim/vimrc
+vim:$HOME/.vim/colors/mmono.vim
+vim:$HOME/.vim/colors/m7tkr.colortemplate
 tmux:$HOME/.tmux.conf
 git:$HOME/.gitconfig
 lynx:$HOME/lynx.cfg

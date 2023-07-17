@@ -17,48 +17,20 @@ set imsearch=0
 
 augroup vimrc_autocmd
     au!
-    " bg dark
 augroup END
 
 " set mapleader
 let mapleader = ","
 
+" -------------------
+" syntax highlighting
+" -------------------
+
 " syntax highlight
-" colorscheme is from fogbell
-"runtime colors/
-colorscheme fogbell
+colorscheme mmono
 
-" set highlighting groups
-hi clear Conceal
-hi Normal ctermfg=white ctermbg=black
-hi Statement ctermfg=white
-hi Todo ctermfg=none
-hi Comment ctermfg=249
-hi PreProc ctermfg=white
-hi Identifier ctermfg=white
-hi String ctermfg=white
-hi Operator ctermfg=white
-hi Number ctermfg=white
-hi Special ctermfg=white
-hi Ignore ctermfg=white
-hi Function ctermfg=white
-hi Boolean ctermfg=white
-hi Conditional ctermfg=white
-
-" set colors on vim start
-au VimEnter * hi clear Conceal
-au VimEnter * hi Normal ctermfg=white ctermbg=black
-au VimEnter * hi Statement ctermfg=white
-au VimEnter * hi Todo ctermfg=none
-au VimEnter * hi Comment ctermfg=249
-au VimEnter * hi PreProc ctermfg=white
-au VimEnter * hi Identifier ctermfg=white
-au VimEnter * hi String ctermfg=white
-au VimEnter * hi Operator ctermfg=white
-au VimEnter * hi Number ctermfg=white
-au VimEnter * hi Special ctermfg=white
-au VimEnter * hi Ignore ctermfg=white
-au VimEnter * hi Function ctermfg=white
+syntax match ExtraWhitespace /\s\+$/
+hi ExtraWhitespace ctermbg=darkgrey
 
 " execute 'hi' synIDattr(synID(line("."), col("."), 1), "name")
 
@@ -74,9 +46,8 @@ let g:loaded_matchparen = 0             " disables highlighting itself
 
 set wrap                                " wrap text that goes beyond screen
 set colorcolumn=80                      " colors column
-hi ColorColumn ctermbg=darkgrey
-hi ExtraWhitespace ctermbg=darkgrey
-match ExtraWhitespace /\s\+$/
+
+" au FileType * hi ExtraWhitespace ctermbg=darkgrey
 
 " disabled autofolding
 set nofoldenable
@@ -92,7 +63,7 @@ set noerrorbells
 
 " search-centricity
 set ttyfast
-set nohlsearch    " highlight search
+set hlsearch    " highlight search
 set ignorecase    " ignorecase
 set incsearch     " highlight while typing
 set scrolloff=5   " 5 lines before/after cursor preserved
@@ -137,6 +108,7 @@ call plug#begin('~/.vim/plugged')
 
    Plug 'vim-pandoc/vim-pandoc'
    Plug 'lervag/vimtex'
+   Plug 'lifepillar/vim-colortemplate'
 
 call plug#end()
 

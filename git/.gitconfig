@@ -5,7 +5,7 @@
 	log-pretty = log --pretty=oneline --abbrev-commit
     show-graph = log --pretty=oneline --abbrev-commit --graph --all
     co = checkout
-    br = branch
+    br = show-branch -a
     ci = commit
     cim = commit -m
     st = status
