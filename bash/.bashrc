@@ -9,6 +9,16 @@ case $- in
       *) return;;
 esac;
 
+# specify path to sshd
+#SSHD=/etc/init.d/ssh
+
+# if sshd exist and is x, run it and echo success
+#if [ -x "$SSHD" ]
+#then 
+#    $SSHD && echo 'started sshd'
+#fi
+
+
 # set color formatters
 start_color='e[38;5;'
 end_format='e[0m'
@@ -17,8 +27,11 @@ RED=$(tput setaf 124)
 ORANGE=$(tput setaf 202)
 NORMAL=$(tput sgr0)
 
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+
 # Setting PATH
-export PATHPREP=
+export PATHPREP=$HOME/gems/bin:
 export PATHAPPEND=:$HOME/shared/bash/bin
 export PATH=$PATHPREP$PATH$PATHAPPEND
 
@@ -60,7 +73,7 @@ alias ls='ls -F'
 alias la='ls -laF'
 alias ll='ls -l'
 alias portsrch='port search --name --glob'
-alias sshd='sudo /usr/sbin/sshd -f ~/myserver/config'
+alias sshd='sudo /etc/init.d/ssh start -f ~/myserver/config'
 alias pdflatex='pdflatex -file-line-error -halt-on-error -synctex=1'
 alias tree='tree -L'
 
