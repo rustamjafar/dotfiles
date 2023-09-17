@@ -109,6 +109,7 @@ call plug#begin('~/.vim/plugged')
    Plug 'vim-pandoc/vim-pandoc'
    Plug 'lervag/vimtex'
    Plug 'lifepillar/vim-colortemplate'
+   Plug 'mattn/emmet-vim'
 
 call plug#end()
 
@@ -136,8 +137,10 @@ let g:pandoc#syntax#conceal#use = 0
 " disable matching parenth (def 1)
 let g:vimtex_matchparen_enabled = 0
 
+let g:vimtex_quickfix_open_on_warning = 1
+
 let g:vimtex_compiler_latexmk = {
-        \ 'aux_dir' : './aux/',
+        \ 'aux_dir' : '',
         \ 'out_dir' : '',
         \ 'callback' : 1,
         \ 'continuous' : 1,
@@ -146,12 +149,10 @@ let g:vimtex_compiler_latexmk = {
         \ 'options' : [
         \   '-verbose',
         \   '-file-line-error',
-        \   '-synctex=1',
+        \   '-synctex=0',
         \   '-interaction=nonstopmode',
         \ ],
         \}
-
-let g:vimtex_quickfix_open_on_warning = 1
 
 " --------------------------------
 " remapping

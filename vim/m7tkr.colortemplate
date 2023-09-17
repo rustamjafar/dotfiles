@@ -21,6 +21,7 @@ Statement   -> Normal
 PreProc     -> Normal
 Type        -> Normal
 Special     -> Normal
+Conceal     -> Normal
 
 Comment     shade1  black
 
