@@ -18,6 +18,8 @@ esac;
 #    $SSHD && echo 'started sshd'
 #fi
 
+export GIT_EDITOR=vim
+
 
 # set color formatters
 start_color='e[38;5;'
