@@ -1,6 +1,6 @@
 [user]
 	name = m7tkr
-	email = m7tkr@outlook.com
+	email = m7tkr.mdn@gmail.com
 [alias]
 	log-pretty = log --pretty=oneline --abbrev-commit
     show-graph = log --pretty=oneline --abbrev-commit --graph --all
@@ -15,4 +15,6 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 [core]
+	editor = vim
+[sequence]
 	editor = vim
