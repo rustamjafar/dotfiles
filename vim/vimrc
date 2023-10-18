@@ -3,17 +3,21 @@ set encoding=utf-8      " The encoding displayed on screen
 set fileencoding=utf-8  " The encoding written to file.
 
 " languages
-"set arabicshape
-"set keymap=russian-jcukenwin
+" default second language is russian
+set keymap=russian-jcukenwin 
+"set keymap=hebrew
 "set keymap=arabic_utf-8
+
+" input method
+set iminsert=0
+set imsearch=0
+" displays which keymaps are available
+" :echo globpath(&rtp, "keymap/*.vim")
 
 " keyboard
 set listchars=space:*,extends:>,precedes:<,tab:\|>,eol:$
 set backspace=indent,eol,start
 
-" ???????????????
-set iminsert=0
-set imsearch=0
 
 augroup vimrc_autocmd
     au!
@@ -182,6 +186,12 @@ nnoremap <CR> o<Esc>
 
 " pathname completion
 inoremap <leader><C-I> <C-X><C-F>
+
+" switching input method
+nnoremap <leader>en :set iminsert=0<CR>:set imsearch=0<CR>
+nnoremap <leader>ru :set keymap=russian-jcukenwin<CR>
+nnoremap <leader>ar :set keymap=arabic_utf-8<CR>
+nnoremap <leader>he :set keymap=hebrew<CR>
 
 " ----------------------
 " statusline setup
