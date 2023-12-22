@@ -33,9 +33,9 @@ NORMAL=$(tput sgr0)
 export GEM_HOME="$HOME/gems"
 
 # Setting PATH
-export PATHPREP=$HOME/gems/bin:
-export PATHAPPEND=:$HOME/shared/bash/bin
-export PATH=$PATHPREP$PATH$PATHAPPEND
+export PATHPREP="$HOME/cconda/bin:"
+export PATHAPPEND=":$HOME/shared/bash/bin"
+export PATH="$PATHPREP$PATH$PATHAPPEND"
 
 # Setting CDPATH
 export CDPATH=$HOME/rsmn/:$HOME/
@@ -85,3 +85,19 @@ HISTTIMEFORMAT='%H%M%S%d%m%Y  '
 
 # run lynx user config file
 #LYNX_CFG=~/lynx.cfg
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/m7tkr/cconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/m7tkr/cconda/etc/profile.d/conda.sh" ]; then
+        . "/home/m7tkr/cconda/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/m7tkr/cconda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
