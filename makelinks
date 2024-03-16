@@ -1,47 +1,36 @@
 #!/usr/bin/env bash
 
 # author: m7tkr
-# last edited: 20230713145333
+# last edited: 20240316180751
 # purpose: create rc files symlinks
-# usage: ---
+# usage: source <path>/<to>/makelinks
 
-# sets script's directory
-SOURCEPATH=$( dirname ${BASH_SOURCE[0]} )
+# get script directory
+SCRIPT_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") &> /dev/null && pwd)
 
-# set -mindepth 1 to exclude parent dir
-#find $SOURCEPATH -maxdepth 1 -mindepth 1 -type d -not -name '.*'
+while read -r; do
+    # check if location commented, by so skipping it
+    grep -q -e '^#' <<< "$REPLY" && echo "$REPLY" won\'t be created && continue
 
-function symLink() {
-    # check if symbolic link folder exists
-    if [ -d $(eval echo $symFolder) ]; then
-        eval ln -sf $hardLink $symLink
-    else
-        # if not then 1st create it
-        mkdir -p $symFolder
-        # then place symbolic link inside
-        eval ln -sf $hardLink $symLink
+    # extract folder path
+    DIR="${REPLY#*:}"
+    DIR=$( eval echo "${DIR%/*}" )
+
+    # extract file name
+    FILE="${REPLY##*/}"
+
+    # location/path of target file
+    TARGET_FILE_PATH="${REPLY%%:*}"
+    TARGET_FILE_PATH="$TARGET_FILE_PATH/$FILE"
+    TARGET_FILE_PATH="$SCRIPT_DIR/$TARGET_FILE_PATH"
+
+    # check if symbolic link directory exists
+    if [ ! -d "$DIR" ]; then
+        # create direcotory in which symlinks will reside
+        mkdir -p $DIR
+	echo "created directory: $DIR"
     fi
-}
 
-function noSymLink() {
-    echo no symlink for $1 is created
-}
-
-while read; do
-    hardFolder=${REPLY%%:*}
-    hardFile=${REPLY##*/}
-
-    hardLink="$HOME/$SOURCEPATH/${hardFolder}/${hardFile}"
-    symLink="${REPLY##*:}"
-
-    # setting symFolder
-    symFolder="${REPLY##*:}"
-    symFolder="${symFolder%/*}"
-
-
-    if [ -n "$(grep '^#' <<< $REPLY)" ]; then
-        noSymLink $REPLY
-    else
-        symLink
-    fi
-done < $SOURCEPATH/locations.txt
+    # finally create symbolic link
+    ln -sf "$TARGET_FILE_PATH" "$DIR/$FILE"  
+done < "$SCRIPT_DIR"/locations.txt

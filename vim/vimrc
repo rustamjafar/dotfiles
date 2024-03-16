@@ -141,13 +141,22 @@ let g:pandoc#syntax#conceal#use = 0
 " disable matching parenth (def 1)
 let g:vimtex_matchparen_enabled = 0
 
+" jump to the first error whenever quickfix is opened
+let g:vimtex_quickfix_autojump = 1
+
+" open quickfix on warning, even if no errors are found
 let g:vimtex_quickfix_open_on_warning = 1
+
+" use this option to disable/enable the quickfix integration.
+let g:vimtex_quickfix_enabled = 1
+
+"let g:vimtex_quickfix_method = 'pplatex'
 
 let g:vimtex_compiler_latexmk = {
         \ 'aux_dir' : '',
         \ 'out_dir' : '',
         \ 'callback' : 1,
-        \ 'continuous' : 1,
+        \ 'continuous' : 0,
         \ 'executable' : 'latexmk',
         \ 'hooks' : [],
         \ 'options' : [
@@ -196,9 +205,9 @@ inoremap <C-l> <C-^>
 
 " rtl / ltr input mode for arabic/hebrew
 nnoremap <leader>hh :set norl<CR>
-inoremap <leader>h :set norl<CR>a
+inoremap <leader>hh :set norl<CR>a
 nnoremap <leader>ll :set rl<CR>
-inoremap <leader>l :set rl<CR>a
+inoremap <leader>ll :set rl<CR>a
 
 " TODO make note about changing language in vim
 
