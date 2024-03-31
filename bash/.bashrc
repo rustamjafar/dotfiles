@@ -1,7 +1,8 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# set encoding
-export LANG="en_US.UTF-8"
+# add these 2 lines, otherwise ssh show locale=posix
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 # If not running interactively, don't do anything
 case $- in
@@ -27,9 +28,9 @@ DEBIAN=$(tput setaf 52)
 NORMAL=$(tput sgr0)
 
 # this paths are for latex
-PATH=/usr/local/texlive/2023/bin/x86_64-linux:$PATH
-MANPATH=/usr/local/texlive/2023/texmf-dist/doc/man:$MANPATH
-INFOPATH=/usr/local/texlive/2023/texmf-dist/doc/info:$INFOPATH
+PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH
+MANPATH=/usr/local/texlive/2024/texmf-dist/doc/man:$MANPATH
+INFOPATH=/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH
 
 # this path is for adb android tools
 if [ -d "$HOME/adb-fastboot/platform-tools" ] ; then
@@ -44,20 +45,21 @@ export PATH="$PATHPREP$PATH$PATHAPPEND"
 # Setting CDPATH
 #export CDPATH=
 
-
-# checking if pwd is git repo
-# to be refactored
-# add check on pushing
+# checks `cwd` is git repo and changes color of branch name
 git_branch() {
-    gbranch=$(git branch --show-current 2> /dev/null)
+  G_BRANCH=$(git branch --show-current 2> /dev/null)
 
-    if [ -n "$gbranch" ] && [ -n "$(git status --porcelain)" ]; then
-            echo -e " ${RED}b:$gbranch${NORMAL}"
-    fi
+  # define what the color will be
+  if [ -n "$G_BRANCH" ]; then {
+    case "$(git status --porcelain)" in
+      ""  ) COLOR="$GREEN" ;;
+       *  ) COLOR="$RED"  ;;
+    esac
 
-    if [ -n "$gbranch" ] && [ -z "$(git status --porcelain)" ]; then
-            echo -e " ${GREEN}b:$gbranch${NORMAL}"
-    fi
+    # finally dislay colored branch name in readline prompt
+    echo -e " ${COLOR}b:$G_BRANCH${NORMAL}"
+  }
+  fi
 }
 
 # color hostname for easiness in multi-os env

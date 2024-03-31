@@ -2,7 +2,10 @@ bash:~/.bashrc
 bash:~/.inputrc
 vim:~/.vim/vimrc
 vim:~/.vim/colors/mmono.vim
-vim:~/.vim/colors/m7tkr.colortemplate
+vim:~/.vim/colors/mmono.colortemplate
+vim:~/.vim/keymap/arabic-pc_utf-8.vim
+vim:~/.vim/keymap/russian-jcuken-pc.vim
+vim:~/.vim/after/ftplugin/markdown.vim
 tmux:~/.tmux.conf
 git:~/.gitconfig
 #lynx:~/lynx.cfg

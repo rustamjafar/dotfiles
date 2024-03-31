@@ -5,6 +5,8 @@ Author:     m7tkr@outlook.com
 Variant: 256
 Background: dark
 
+; Color: <Name> <GUI spec> <Base-256 spec> <Base-16 spec>
+
 Color: white    #eeeeee 255     White
 Color: shade1   #9e9e93 247
 Color: black    #000000 16      Black
@@ -22,6 +24,10 @@ PreProc     -> Normal
 Type        -> Normal
 Special     -> Normal
 Conceal     -> Normal
+Title       -> Normal
+htmlLink    -> Normal
+
+ExtraWhitespace     white   shade1
 
 Comment     shade1  black
 

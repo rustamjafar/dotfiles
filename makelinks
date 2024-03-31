@@ -33,4 +33,4 @@ while read -r; do
 
     # finally create symbolic link
     ln -sf "$TARGET_FILE_PATH" "$DIR/$FILE"  
-done < "$SCRIPT_DIR"/locations.txt
+done < "$SCRIPT_DIR"/locations

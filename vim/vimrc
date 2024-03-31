@@ -19,27 +19,26 @@ set imsearch=0
 set listchars=space:*,extends:>,precedes:<,tab:\|>,eol:$
 set backspace=indent,eol,start
 
-augroup vimrc_autocmd
-    au!
-augroup END
-
 " set mapleader
 let mapleader = ","
 
-" -------------------
-" syntax highlighting
-" -------------------
+" get list of available colorschemes w/ following command
+" echo globpath(&rtp, 'colors/*.vim')
+
+" use this cmd to show color group name under the cursor
+" execute 'hi' synIDattr(synID(line("."), col("."), 1), "name")
 
 " syntax highlight
 colorscheme mmono
 
+" recognise whitespace in thjj
 syntax match ExtraWhitespace /\s\+$/
-hi ExtraWhitespace ctermbg=darkgrey
 
-" execute 'hi' synIDattr(synID(line("."), col("."), 1), "name")
+" same functionality as hitting <ctrl-d> in the command mode
+set wildmenu
 
 " concealing
-set conceallevel=2
+set conceallevel=0
 
 " changes default dir to currentfile dir
 set autochdir
@@ -85,9 +84,9 @@ set scrolloff=5   " 5 lines before/after cursor preserved
 " set formatoptions+=t
 
 " working w/ tab
-set softtabstop=2   " amount of 'n' whitespaces inserted on each <tab> press
 set tabstop=2       " show existing tab with 'n' spaces width
 set shiftwidth=2    " when indenting with `>`, use 'n' spaces width
+set softtabstop=2   " # of spaces inserted on each press of \t
 set expandtab       " converts \t into <tabstop> amount of spaces
 
 " no backup files
@@ -109,12 +108,7 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-
-   Plug 'vim-pandoc/vim-pandoc'
-   Plug 'lervag/vimtex'
-   Plug 'lifepillar/vim-colortemplate'
-   Plug 'mattn/emmet-vim'
-
+  Plug 'lifepillar/vim-colortemplate'
 call plug#end()
 
 " --------------------------------
@@ -122,57 +116,12 @@ call plug#end()
 " --------------------------------
 
 " --------------------------------
-" vim-pandoc
+" remapping starts here
 " --------------------------------
 
-" enable=1 / disable=0 spelling
-let g:pandoc#spell#enabled = 0
-
-" annoying 1st f oldcolumn width. disable=0.
-let g:pandoc#folding#fdc = 0
-
-" turn off conceal of vim-pandoc-syntax
-let g:pandoc#syntax#conceal#use = 0
-
-" --------------------------------
-" vimtex
-" --------------------------------
-
-" disable matching parenth (def 1)
-let g:vimtex_matchparen_enabled = 0
-
-" jump to the first error whenever quickfix is opened
-let g:vimtex_quickfix_autojump = 1
-
-" open quickfix on warning, even if no errors are found
-let g:vimtex_quickfix_open_on_warning = 1
-
-" use this option to disable/enable the quickfix integration.
-let g:vimtex_quickfix_enabled = 1
-
-"let g:vimtex_quickfix_method = 'pplatex'
-
-let g:vimtex_compiler_latexmk = {
-        \ 'aux_dir' : '',
-        \ 'out_dir' : '',
-        \ 'callback' : 1,
-        \ 'continuous' : 0,
-        \ 'executable' : 'latexmk',
-        \ 'hooks' : [],
-        \ 'options' : [
-        \   '-verbose',
-        \   '-file-line-error',
-        \   '-synctex=0',
-        \   '-interaction=nonstopmode',
-        \ ],
-        \}
-
-" --------------------------------
-" remapping
 " map: normal, visual, select and operator pendingm modes
 " map!: insert, command-line
 " :help key-notation
-" --------------------------------
 
 " texsnip
 noremap <leader>tex :.!texsnip<CR>
@@ -195,8 +144,8 @@ inoremap <leader><C-I> <C-X><C-F>
 
 " switching input method
 nnoremap <leader>en :set iminsert=0<CR>:set imsearch=0<CR>
-nnoremap <leader>ru :set keymap=russian-jcukenmac<CR>
-nnoremap <leader>ar :set keymap=arabic_utf-8<CR>
+nnoremap <leader>ru :set keymap=russian-jcuken-pc<CR>
+nnoremap <leader>ar :set keymap=arabic-pc_utf-8<CR>
 nnoremap <leader>he :set keymap=hebrew<CR>
 
 " change language while in input mode, equiv. to `ctrl-^`
@@ -209,11 +158,17 @@ inoremap <leader>hh :set norl<CR>a
 nnoremap <leader>ll :set rl<CR>
 inoremap <leader>ll :set rl<CR>a
 
-" TODO make note about changing language in vim
+" --------------------------------
+" remapping ends here
+" --------------------------------
 
 " ----------------------
-" statusline setup
+" statusline begins here
 " ----------------------
 
 set ruler
 set ruf=%30(%=%#Normal#%.50F\ [%{strlen(&ft)?&ft:'none'}]\ %l:%c\ %p%%%)
+
+" ----------------------
+" statusline ends here
+" ----------------------
