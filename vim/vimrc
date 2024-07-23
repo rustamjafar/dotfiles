@@ -2,6 +2,14 @@ set shell=/usr/bin/bash
 set encoding=utf-8      " The encoding displayed on screen
 set fileencoding=utf-8  " The encoding written to file.
 
+" this is vim-plug
+call plug#begin('~/.vim/plugged')
+        Plug 'lifepillar/vim-colortemplate'
+call plug#end()
+
+" hide toolbard in colortemplate files
+let g:colortemplate_toolbar = 0
+
 " languages
 " default second language is russian
 set keymap=russian-jcukenmac
@@ -28,11 +36,14 @@ let mapleader = ","
 " use this cmd to show color group name under the cursor
 " execute 'hi' synIDattr(synID(line("."), col("."), 1), "name")
 
-" syntax highlight
-colorscheme mmono
+" recognise whitespace in thj
+" syntax match ExtraWhitespace /\s\+$/
+set background=light
+colorscheme rstmono
 
-" recognise whitespace in thjj
-syntax match ExtraWhitespace /\s\+$/
+" syntax on
+"https://vimdoc.sourceforge.net/htmldoc/starting.html#startup
+autocmd VimEnter * syntax match ExtraWhitespace /\s\+$/ 
 
 " same functionality as hitting <ctrl-d> in the command mode
 set wildmenu
@@ -49,8 +60,6 @@ let g:loaded_matchparen = 0             " disables highlighting itself
 
 set wrap                                " wrap text that goes beyond screen
 set colorcolumn=80                      " colors column
-
-" au FileType * hi ExtraWhitespace ctermbg=darkgrey
 
 " disabled autofolding
 set nofoldenable
@@ -84,9 +93,9 @@ set scrolloff=5   " 5 lines before/after cursor preserved
 " set formatoptions+=t
 
 " working w/ tab
-set tabstop=2       " show existing tab with 'n' spaces width
-set shiftwidth=2    " when indenting with `>`, use 'n' spaces width
-set softtabstop=2   " # of spaces inserted on each press of \t
+set tabstop=8       " show existing tab with 'n' spaces width (ts)
+set shiftwidth=8    " when indenting with `>`, use 'n' spaces width
+set softtabstop=8   " # of spaces inserted on each press of \t
 set expandtab       " converts \t into <tabstop> amount of spaces
 
 " no backup files
@@ -98,18 +107,6 @@ set nowritebackup
 filetype on             " enable filetype detection
 filetype plugin on      " load file-specific plugins
 filetype indent on      " load file-specific indentation
-
-" Vim-Plugin
-" autoload vim-plugin if not found
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin('~/.vim/plugged')
-  Plug 'lifepillar/vim-colortemplate'
-call plug#end()
 
 " --------------------------------
 " Plugin Customization Begins Here
@@ -125,9 +122,6 @@ call plug#end()
 
 " texsnip
 noremap <leader>tex :.!texsnip<CR>
-
-" glossary for construction notes
-noremap <leader>link :.!/home/m7tkr/shared/construction/scripts/link<CR>
 
 " 'Y' as 'D'
 map <S-Y> y$
@@ -157,6 +151,9 @@ nnoremap <leader>hh :set norl<CR>
 inoremap <leader>hh :set norl<CR>a
 nnoremap <leader>ll :set rl<CR>
 inoremap <leader>ll :set rl<CR>a
+
+" toggle background
+map <Leader>bg :let &background = (&background == "dark"? "light" : "dark")<CR>
 
 " --------------------------------
 " remapping ends here

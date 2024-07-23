@@ -1,0 +1,90 @@
+Full name:  90% Mono Scheme
+Short name: rstmono
+Author:     rustamjafar@gmail.com
+
+; color definitions the following block is
+; Color: <Name> <GUI spec> <Base-256 spec> <Base-16 spec>
+Color: darkblack        #000000 0       Black
+Color: darkred          #800000 1       DarkRed
+Color: darkgreen        #008000 2       DarkGreen
+Color: darkyellow       #808000 3       DarkYellow ; Brown
+Color: darkblue         #000080 4       DarkBlue
+Color: darkmagenta      #800080 5       DarkMagenta
+Color: darkcyan         #008080 6       DarkCyan
+Color: darkwhite        #c0c0c0 7       LightGray ; Gray, Grey, LightGrey
+Color: lightblack       #808080 8       DarkGray ; DarkGrey
+Color: lightred         #ff0000 9       Red ; LightRed
+Color: lightgreen       #00ff00 10      Green ; LightGreen
+Color: lightyellow      #ffff00 11      Yellow ; LightYellow
+Color: lightblue        #0000ff 12      Blue ; LightBlue
+Color: lightmagenta     #ff0000 13      Magenta ; LightMagenta
+Color: lightcyan        #00ffff 14      Cyan ; LightCyan
+Color: lightwhite       #ffffff 15      White
+
+; terminal colors
+Term Colors: darkblack  darkred      darkgreen  darkyellow
+Term Colors: darkblue   darkmagenta  darkcyan   darkwhite
+Term Colors: lightblack  lightred      lightgreen  lightyellow
+Term Colors: lightblue   lightmagenta  lightcyan   lightwhite
+
+;verbatim
+;        autocmd ColorScheme * syntax match ExtraWhitespace /\s\+$/
+;endverbatim
+
+; local section: highlight, color, verbatim
+Variant: gui 256
+Background: dark
+
+; highlight group definitions
+;<Group name> <foreground color> <background color> <style attributes>
+Normal                  lightwhite     none
+Constant        ->      Normal
+Identifier      ->      Normal
+Statement       ->      Normal
+PreProc         ->      Normal
+Type            ->      Normal
+Special         ->      Normal
+Conceal         ->      Normal
+Title           ->      Normal
+htmlLink        ->      Normal
+Boolean         ->      Normal
+
+ExtraWhitespace         none            lightblack
+Comment                 lightblack      none
+;Todo        darkwhite   darkblack   bold,reverse
+;Underlined  darkwhite   darkblack   underline
+
+; different parts of an editor
+ColorColumn     omit            lightblack
+WarningMsg      darkred         none
+Search          darkblack       lightyellow
+CurSearch   ->  Search
+IncSearch   ->  Search
+
+; local section: highlight, color, verbatim
+Background: light  
+
+; color palette based on color definitions
+Normal          darkblack       none
+Identifier  -> Normal
+Constant    -> Normal
+Statement   -> Normal
+PreProc     -> Normal
+Type        -> Normal
+Special     -> Normal
+Conceal     -> Normal
+Title       -> Normal
+htmlLink    -> Normal
+Boolean     -> Normal
+
+ExtraWhitespace         none            darkwhite
+Comment                 darkwhite       none
+;Todo                    lightblack      lightwhite   bold,reverse
+;Underlined              lightwhite      lightblack   underline
+
+; different parts of an editor
+ColorColumn     none            lightwhite
+WarningMsg      darkred         none
+Search          none            lightyellow
+CurSearch   -> Search
+IncSearch   -> Search

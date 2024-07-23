@@ -38,7 +38,7 @@ if [ -d "$HOME/adb-fastboot/platform-tools" ] ; then
 fi
 
 # setting pATH
-export PATHPREP="$HOME/cconda/bin:"
+export PATHPREP="$HOME/cconda/bin:/usr/local/go/bin:"
 export PATHAPPEND=":$HOME/shared/bash/bin"
 export PATH="$PATHPREP$PATH$PATHAPPEND"
 

@@ -1,11 +1,11 @@
 bash:~/.bashrc
 bash:~/.inputrc
 vim:~/.vim/vimrc
-vim:~/.vim/colors/mmono.vim
-vim:~/.vim/colors/mmono.colortemplate
+vim:~/.vim/colors/rstmono.vim
+vim:~/.vim/rstmono.colortemplate
 vim:~/.vim/keymap/arabic-pc_utf-8.vim
 vim:~/.vim/keymap/russian-jcuken-pc.vim
-vim:~/.vim/after/ftplugin/markdown.vim
+#vim:~/.vim/after/ftplugin/markdown.vim
 tmux:~/.tmux.conf
 git:~/.gitconfig
 #lynx:~/lynx.cfg

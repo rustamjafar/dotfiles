@@ -1,14 +1,14 @@
 [user]
-	name = m7tkr
-	email = m7tkr.mdn@gmail.com
+	name = rustam jafar
+	email = rst.jafar@gmail.com
 [alias]
 	log-pretty = log --pretty=oneline --abbrev-commit
-    show-graph = log --pretty=oneline --abbrev-commit --graph --all
-    co = checkout
-    br = show-branch -a
-    ci = commit
-    cim = commit -m
-    st = status
+        show-graph = log --pretty=oneline --abbrev-commit --graph --all
+        co = checkout
+        br = show-branch -a
+        ci = commit
+        cim = commit -m
+        st = status
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
