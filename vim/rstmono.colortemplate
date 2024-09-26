@@ -32,7 +32,7 @@ Term Colors: lightblue   lightmagenta  lightcyan   lightwhite
 ;endverbatim
 
 ; local section: highlight, color, verbatim
-Variant: gui 256
+Variant: gui 256 16 16
 Background: dark
 
 ; highlight group definitions
@@ -46,8 +46,9 @@ Type            ->      Normal
 Special         ->      Normal
 Conceal         ->      Normal
 Title           ->      Normal
-htmlLink        ->      Normal
 Boolean         ->      Normal
+htmlLink        ->      Normal
+asciidocQuotedEmphasizedItalic ->       Normal
 
 ExtraWhitespace         none            lightblack
 Comment                 lightblack      none
@@ -62,7 +63,7 @@ CurSearch   ->  Search
 IncSearch   ->  Search
 
 ; local section: highlight, color, verbatim
-Background: light  
+Background: light
 
 ; color palette based on color definitions
 Normal          darkblack       none

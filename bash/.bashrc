@@ -21,16 +21,18 @@ start_color='e[38;5;'
 end_format='e[0m'
 
 # colors in tput format
-RED=$(tput setaf 1)
-ORANGE=$(tput setaf 202)
-GREEN=$(tput setaf 2)
-DEBIAN=$(tput setaf 52)
+DARKRED=$(tput setaf 1)
+DARKYELLOW=$(tput setaf 3)
+RED=$(tput setaf 9)
+GREEN=$(tput setaf 10)
 NORMAL=$(tput sgr0)
 
 # this paths are for latex
 PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH
 MANPATH=/usr/local/texlive/2024/texmf-dist/doc/man:$MANPATH
 INFOPATH=/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH
+#TEXMFHOME=/home/m7tkr/texmf
+#TEXMFLOCAL=/home/m7tkr/texmf
 
 # this path is for adb android tools
 if [ -d "$HOME/adb-fastboot/platform-tools" ] ; then
@@ -66,8 +68,8 @@ git_branch() {
 # for now includes: ubuntu, debian
 VERSION=$(sed -n 2p /etc/os-release)
 case "${VERSION,,}" in
-    *ubuntu* ) HOSTNAME="${ORANGE}${HOSTNAME}${NORMAL}" ;;
-    *debian* ) HOSTNAME="${DEBIAN}${HOSTNAME}${NORMAL}" ;;
+    *ubuntu* ) HOSTNAME="${DARKYELLOW}${HOSTNAME}${NORMAL}" ;;
+    *debian* ) HOSTNAME="${DARKRED}${HOSTNAME}${NORMAL}" ;;
     *         ) ;;
 esac
 

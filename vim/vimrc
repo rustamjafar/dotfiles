@@ -7,6 +7,9 @@ call plug#begin('~/.vim/plugged')
         Plug 'lifepillar/vim-colortemplate'
 call plug#end()
 
+" turn off .viminfo file
+set viminfofile=NONE
+
 " hide toolbard in colortemplate files
 let g:colortemplate_toolbar = 0
 
